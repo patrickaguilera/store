@@ -11,3 +11,5 @@ $query_str = "SELECT * FROM `products` JOIN `departments` ON
               WHERE `name` LIKE '$search' OR `department_name` LIKE '$search'";
 
 require("result_table.php");
+require("cart_display.php");
+?>

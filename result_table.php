@@ -23,43 +23,32 @@ echo "<h3>Showing results for '$search'</h3>
         <td>
             <b>Purchase</b>
         </td>
-        <td>
-        
-        </tr>";
-        
-        if(isset($_GET['sort'])){
-            $query_str .= "ORDER BY " . $_GET['sort'];
+    </tr>";
+    
+    if(isset($_GET['sort'])){
+        $query_str .= "ORDER BY " . $_GET['sort'];
     }
     
     //retrieves data from database
     $query = mysqli_query($connection, $query_str);
     while($result=mysqli_fetch_array($query)){
         echo "<tr>
-        <td></td>
-        <td> " . $result['name'] . "</td>
-        <td> $" . $result['price'] . "</td>
-        <td> " . $result['inventory_count'] . "</td>
-        <td>";
-        if(in_array($result['product_id'], $cart)){
-            echo "Added to Cart";
-        }else{
-            echo "<a href='?add_cart=" . $result['product_id'] . "'>
-            Add to Cart?
-            </a>";
-        }
-        echo "<td>
-            <input list = 'quantity' name = 'quantity' 
-            id = '" . $result['product_id'] . "'>
-            <datalist id = 'quantity'>";
-                for($i = 1; $i <= $result['inventory_count']; $i++){
-                    echo "<option value = $i>";
-                }
-            echo "</datalist>
-        </td>
+            <td></td>
+            <td> " . $result['name'] . "</td>
+            <td> $" . $result['price'] . "</td>
+            <td> " . $result['inventory_count'] . "</td>
+            <td>";
+            if(in_array($result['product_id'], $cart)){
+                echo "Added to Cart";
+            }else{
+                echo "<a href='?add_cart=" . $result['product_id'] . "'>
+                    Add to Cart?
+                </a>";
+            }
+            echo "</td>
         </tr>";
     }
-    echo "</tr>
-</table>
+echo "</table>
 </form>";
 
 //link to back home
